@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebSocket</title>
+</head>
+<body>
+  <h1>Crypto Data</h1>
+  <div id="data-container"></div>
+  <p>Last Updated: <span id="last-updated"></span></p>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    socket.on('dataUpdate', (data) => {
+      const dataContainer = document.getElementById('data-container');
+      dataContainer.innerHTML = JSON.stringify(data, null, 2);
+
+      const lastUpdatedElement = document.getElementById('last-updated');
+      lastUpdatedElement.textContent = new Date().toLocaleTimeString();
+    });
+  </script>
+</body>
+</html>
